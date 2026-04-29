@@ -50,7 +50,7 @@ export const HelpDirectory = ({ lang }: Props) => {
           <Input
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search…"
+            placeholder={t(lang, "search")}
             className="h-12 pl-9 rounded-2xl bg-card"
           />
         </div>
@@ -68,7 +68,7 @@ export const HelpDirectory = ({ lang }: Props) => {
                 : "bg-card hover:bg-accent/30 border-border"
             )}
           >
-            {f === "all" ? "All" : f === "legal-aid" ? t(lang, "lawyers") : f === "ngo" ? t(lang, "ngos") : t(lang, "helplines")}
+            {f === "all" ? t(lang, "all") : f === "legal-aid" ? t(lang, "lawyers") : f === "ngo" ? t(lang, "ngos") : t(lang, "helplines")}
           </button>
         ))}
       </div>
@@ -103,7 +103,7 @@ export const HelpDirectory = ({ lang }: Props) => {
         })}
         {contacts.length === 0 && (
           <div className="sm:col-span-2 text-center py-12 text-muted-foreground">
-            No contacts match your search.
+            {t(lang, "noResults")}
           </div>
         )}
       </div>
