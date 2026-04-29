@@ -145,7 +145,7 @@ export const VoiceChat = ({ lang }: Props) => {
             <Sparkles className="h-5 w-5 text-primary-foreground" />
           </div>
           <div>
-            <div className="font-semibold leading-tight">NyayaSakshi AI</div>
+            <div className="font-semibold leading-tight">NyayaSakhi AI</div>
             <div className="text-xs opacity-80">{streaming ? "..." : isSpeaking ? t(lang, "speaking") : language.native}</div>
           </div>
         </div>

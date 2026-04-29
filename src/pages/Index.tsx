@@ -1,14 +1,15 @@
 import { useState } from "react";
-import { Mic, MapPin, ScrollText, ShieldCheck, ArrowRight, Phone, Sparkles } from "lucide-react";
+import { Mic, MapPin, ScrollText, ShieldCheck, ArrowRight, Phone, Sparkles, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { LanguagePicker } from "@/components/LanguagePicker";
 import { VoiceChat } from "@/components/VoiceChat";
 import { HelpDirectory } from "@/components/HelpDirectory";
+import { LegalGuidance } from "@/components/LegalGuidance";
 import { useLanguage } from "@/hooks/useLanguage";
 import { t } from "@/lib/languages";
 import heroImg from "@/assets/hero-woman.jpg";
 
-type View = "home" | "chat" | "help";
+type View = "home" | "chat" | "help" | "guidance";
 
 const Index = () => {
   const { lang, setLang, language } = useLanguage();
@@ -24,8 +25,8 @@ const Index = () => {
               <Sparkles className="h-4 w-4 text-primary-foreground" />
             </div>
             <div className="text-left leading-tight">
-              <div className="font-bold display text-lg">NyayaSakshi <span className="text-primary">AI</span></div>
-              <div className="text-[11px] text-muted-foreground hidden sm:block">न्याय की साक्षी</div>
+              <div className="font-bold display text-lg">NyayaSakhi <span className="text-primary">AI</span></div>
+              <div className="text-[11px] text-muted-foreground hidden sm:block">{language.native}</div>
             </div>
           </button>
           <div className="flex items-center gap-2">
@@ -48,12 +49,10 @@ const Index = () => {
               <div className="space-y-7 animate-float-up">
                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-card border shadow-soft">
                   <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
-                  <span className="text-xs font-medium text-muted-foreground">For rural women across India · 12 भाषाएँ</span>
+                  <span className="text-xs font-medium text-muted-foreground">{t(lang, "forRuralWomen")}</span>
                 </div>
                 <h1 className="display text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.05] text-balance">
-                  {language.code === "hi" || language.code === "en"
-                    ? t(lang, "tagline")
-                    : <>Your voice. <span className="text-primary">Your rights.</span><br/>Your inheritance.</>}
+                  {t(lang, "tagline")}
                 </h1>
                 <p className="text-lg text-muted-foreground max-w-xl text-balance">
                   {t(lang, "subtitle")}
@@ -66,6 +65,15 @@ const Index = () => {
                   >
                     <Mic className="h-5 w-5" />
                     {t(lang, "heroCtaPrimary")}
+                  </Button>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    onClick={() => setView("guidance")}
+                    className="rounded-full h-14 px-7 text-base gap-2 bg-card border-2 hover:bg-accent/20"
+                  >
+                    <FileText className="h-5 w-5 text-primary" />
+                    {t(lang, "heroCtaGuidance")}
                   </Button>
                   <Button
                     size="lg"
@@ -83,7 +91,7 @@ const Index = () => {
                     <Phone className="h-4 w-4 text-secondary-foreground" />
                   </div>
                   <div>
-                    <div className="text-xs text-muted-foreground">Women Helpline · 24×7</div>
+                    <div className="text-xs text-muted-foreground">{t(lang, "womenHelpline")}</div>
                     <div className="font-bold text-secondary text-lg leading-tight">181</div>
                   </div>
                 </a>
@@ -100,7 +108,7 @@ const Index = () => {
                     {language.code.toUpperCase()}
                   </div>
                   <div>
-                    <div className="text-xs text-muted-foreground">Talking in</div>
+                    <div className="text-xs text-muted-foreground">{t(lang, "talkingIn")}</div>
                     <div className="font-semibold leading-tight">{language.native}</div>
                   </div>
                 </div>
@@ -112,17 +120,22 @@ const Index = () => {
           <section className="container mx-auto px-4 pb-20">
             <div className="grid md:grid-cols-3 gap-5">
               {[
-                { icon: Mic,        title: t(lang, "feature1Title"), desc: t(lang, "feature1Desc"), grad: "warm-bg",  fg: "text-primary-foreground" },
-                { icon: ScrollText, title: t(lang, "feature2Title"), desc: t(lang, "feature2Desc"), grad: "trust-bg", fg: "text-secondary-foreground" },
-                { icon: ShieldCheck,title: t(lang, "feature3Title"), desc: t(lang, "feature3Desc"), grad: "bg-accent", fg: "text-accent-foreground" },
-              ].map(({ icon: I, title, desc, grad, fg }, i) => (
-                <div key={i} className="group rounded-3xl bg-card border p-7 shadow-soft hover:shadow-card transition-all hover:-translate-y-1 animate-float-up" style={{ animationDelay: `${i * 80}ms` }}>
+                { icon: Mic,        title: t(lang, "feature1Title"), desc: t(lang, "feature1Desc"), grad: "warm-bg",  fg: "text-primary-foreground", onClick: () => setView("chat") },
+                { icon: ScrollText, title: t(lang, "feature2Title"), desc: t(lang, "feature2Desc"), grad: "trust-bg", fg: "text-secondary-foreground", onClick: () => setView("guidance") },
+                { icon: ShieldCheck,title: t(lang, "feature3Title"), desc: t(lang, "feature3Desc"), grad: "bg-accent", fg: "text-accent-foreground", onClick: () => setView("help") },
+              ].map(({ icon: I, title, desc, grad, fg, onClick }, i) => (
+                <button
+                  key={i}
+                  onClick={onClick}
+                  className="text-left group rounded-3xl bg-card border p-7 shadow-soft hover:shadow-card transition-all hover:-translate-y-1 animate-float-up"
+                  style={{ animationDelay: `${i * 80}ms` }}
+                >
                   <div className={`h-14 w-14 rounded-2xl ${grad} ${fg} grid place-items-center mb-5 shadow-soft`}>
                     <I className="h-6 w-6" />
                   </div>
                   <h3 className="display text-xl font-bold mb-2">{title}</h3>
                   <p className="text-muted-foreground text-sm leading-relaxed">{desc}</p>
-                </div>
+                </button>
               ))}
             </div>
           </section>
@@ -134,8 +147,8 @@ const Index = () => {
               <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-accent/30 blur-3xl" />
               <div className="relative grid sm:grid-cols-[1fr_auto] gap-6 items-center">
                 <div>
-                  <h2 className="display text-3xl sm:text-4xl font-bold mb-3 leading-tight">Ready to know your rights?</h2>
-                  <p className="opacity-90 text-balance">Speak in your language. No reading or typing needed. NyayaSakshi listens, answers, and reads back.</p>
+                  <h2 className="display text-3xl sm:text-4xl font-bold mb-3 leading-tight">{t(lang, "ctaTitle")}</h2>
+                  <p className="opacity-90 text-balance">{t(lang, "ctaDesc")}</p>
                 </div>
                 <Button
                   size="lg"
@@ -149,7 +162,7 @@ const Index = () => {
           </section>
 
           <footer className="container mx-auto px-4 py-8 text-center text-sm text-muted-foreground">
-            <p>{t(lang, "disclaimer")} · 🇮🇳 Made with care for the women of India.</p>
+            <p>{t(lang, "disclaimer")} · 🇮🇳 {t(lang, "footerNote")}</p>
           </footer>
         </main>
       )}
@@ -173,6 +186,17 @@ const Index = () => {
             <p className="text-muted-foreground">{t(lang, "directorySub")}</p>
           </div>
           <HelpDirectory lang={lang} />
+        </main>
+      )}
+
+      {/* GUIDANCE */}
+      {view === "guidance" && (
+        <main className="container mx-auto px-4 py-6 max-w-4xl pb-20">
+          <div className="mb-6 animate-float-up">
+            <h1 className="display text-3xl font-bold">{t(lang, "docsTitle")}</h1>
+            <p className="text-muted-foreground">{t(lang, "docsSub")}</p>
+          </div>
+          <LegalGuidance lang={lang} />
         </main>
       )}
     </div>
