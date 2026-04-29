@@ -48,19 +48,39 @@ export function useSpeechRecognition(bcp47: string) {
   return { supported, listening, transcript, start, stop };
 }
 
-export function speak(text: string, bcp47: string) {
-  if (!("speechSynthesis" in window)) return;
-  window.speechSynthesis.cancel();
+function pickAndSpeak(text: string, bcp47: string) {
+  const synth = window.speechSynthesis;
+  const voices = synth.getVoices();
+  const baseLang = bcp47.split("-")[0].toLowerCase();
+  const match =
+    voices.find(v => v.lang?.toLowerCase() === bcp47.toLowerCase()) ||
+    voices.find(v => v.lang?.toLowerCase().startsWith(baseLang)) ||
+    voices.find(v => v.lang?.toLowerCase().includes(baseLang));
+
   const u = new SpeechSynthesisUtterance(text);
   u.lang = bcp47;
-  // Try to pick a matching voice
-  const voices = window.speechSynthesis.getVoices();
-  const match = voices.find(v => v.lang?.toLowerCase() === bcp47.toLowerCase())
-             || voices.find(v => v.lang?.toLowerCase().startsWith(bcp47.split("-")[0]));
   if (match) u.voice = match;
-  u.rate = 0.95;
+  u.rate = 0.92;
   u.pitch = 1;
-  window.speechSynthesis.speak(u);
+  synth.speak(u);
+}
+
+export function speak(text: string, bcp47: string) {
+  if (!("speechSynthesis" in window)) return;
+  const synth = window.speechSynthesis;
+  synth.cancel();
+  // Voices may load asynchronously — wait if not ready
+  if (synth.getVoices().length === 0) {
+    const handler = () => {
+      synth.removeEventListener("voiceschanged", handler);
+      pickAndSpeak(text, bcp47);
+    };
+    synth.addEventListener("voiceschanged", handler);
+    // Fallback in case event never fires
+    setTimeout(() => pickAndSpeak(text, bcp47), 250);
+  } else {
+    pickAndSpeak(text, bcp47);
+  }
 }
 
 export function stopSpeaking() {
