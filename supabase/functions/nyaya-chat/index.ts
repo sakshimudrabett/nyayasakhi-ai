@@ -14,7 +14,7 @@ const LANG_NAMES: Record<string, string> = {
 
 function buildSystemPrompt(langCode: string) {
   const lang = LANG_NAMES[langCode] ?? "English";
-  return `You are NyayaSakshi AI — a kind, patient legal guide for rural women in India who may have little or no formal education.
+  return `You are NyayaSakhi AI — a kind, patient legal guide for rural women in India who may have little or no formal education.
 
 You ALWAYS reply in ${lang} (${langCode}). Use the native script of ${lang}. Never reply in any other language unless the user explicitly asks.
 
