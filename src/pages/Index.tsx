@@ -196,7 +196,7 @@ const Index = () => {
             <h1 className="display text-3xl font-bold">{t(lang, "docsTitle")}</h1>
             <p className="text-muted-foreground">{t(lang, "docsSub")}</p>
           </div>
-          <LegalGuidance lang={lang} />
+          <LegalGuidance lang={lang} onAskChat={() => setView("chat")} onFindHelp={() => setView("help")} />
         </main>
       )}
     </div>
