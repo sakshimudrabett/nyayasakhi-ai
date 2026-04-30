@@ -42,7 +42,23 @@ type StringKey =
   | "docsTitle" | "docsSub" | "docsIdentity" | "docsIdentityDesc"
   | "docsProperty" | "docsPropertyDesc" | "docsRelationship" | "docsRelationshipDesc"
   | "docsDeath" | "docsDeathDesc" | "docsLegal" | "docsLegalDesc"
-  | "docsTip" | "docsTipText";
+  | "docsTip" | "docsTipText"
+  | "wizardIntro" | "wizardPickCase" | "wizardStep" | "wizardOf" | "wizardNext" | "wizardPrev"
+  | "wizardRestart" | "wizardYourChecklist" | "wizardWhyThis" | "wizardNextSteps"
+  | "wizardAskChat" | "wizardFindHelp"
+  | "caseFatherTitle" | "caseFatherDesc"
+  | "caseHusbandTitle" | "caseHusbandDesc"
+  | "caseDeniedTitle" | "caseDeniedDesc"
+  | "caseAgriTitle" | "caseAgriDesc"
+  | "qWillTitle" | "qWillYes" | "qWillNo" | "qWillUnknown"
+  | "qReligionTitle" | "qHindu" | "qMuslim" | "qChristian" | "qOther"
+  | "qLandTitle" | "qLandYes" | "qLandNo"
+  | "stepWill" | "stepReligion" | "stepLand"
+  | "nextFatherDLSA" | "nextFatherMutation" | "nextFatherFIR"
+  | "nextHusbandSuccession" | "nextHusbandShare"
+  | "nextDeniedNotice" | "nextDeniedSection6"
+  | "nextAgriPatta" | "nextAgriRevenue";
+
 
 export const UI: Record<LangCode, Partial<Record<StringKey, string>>> = {
   en: {
