@@ -1,16 +1,17 @@
 import { useState } from "react";
-import { Mic, MapPin, ScrollText, ShieldCheck, ArrowRight, Phone, Sparkles, FileText } from "lucide-react";
+import { Mic, MapPin, ScrollText, ShieldCheck, ArrowRight, Phone, Sparkles, FileText, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { LanguagePicker } from "@/components/LanguagePicker";
 import { VoiceChat } from "@/components/VoiceChat";
 import { HelpDirectory } from "@/components/HelpDirectory";
 import { LegalGuidance } from "@/components/LegalGuidance";
+import { DocumentUpload } from "@/components/DocumentUpload";
 import { useLanguage } from "@/hooks/useLanguage";
 import { t } from "@/lib/languages";
 import heroImg from "@/assets/hero-woman.jpg";
 import logoImg from "@/assets/logo.svg";
 
-type View = "home" | "chat" | "help" | "guidance";
+type View = "home" | "chat" | "help" | "guidance" | "upload";
 
 const Index = () => {
   const { lang, setLang, language } = useLanguage();
@@ -76,6 +77,15 @@ const Index = () => {
                   >
                     <FileText className="h-5 w-5 text-primary" />
                     {t(lang, "heroCtaGuidance")}
+                  </Button>
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    onClick={() => setView("upload")}
+                    className="rounded-full h-14 px-7 text-base gap-2 bg-card border-2 hover:bg-accent/20"
+                  >
+                    <Upload className="h-5 w-5 text-primary" />
+                    {t(lang, "heroCtaUpload")}
                   </Button>
                   <Button
                     size="lg"
@@ -199,6 +209,17 @@ const Index = () => {
             <p className="text-muted-foreground">{t(lang, "docsSub")}</p>
           </div>
           <LegalGuidance lang={lang} onAskChat={() => setView("chat")} onFindHelp={() => setView("help")} />
+        </main>
+      )}
+
+      {/* UPLOAD */}
+      {view === "upload" && (
+        <main className="container mx-auto px-4 py-6 max-w-3xl pb-20">
+          <div className="mb-6 animate-float-up">
+            <h1 className="display text-3xl font-bold">{t(lang, "docUpTitle")}</h1>
+            <p className="text-muted-foreground">{t(lang, "docUpSub")}</p>
+          </div>
+          <DocumentUpload lang={lang} />
         </main>
       )}
     </div>

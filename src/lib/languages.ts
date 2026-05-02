@@ -57,7 +57,12 @@ type StringKey =
   | "nextFatherDLSA" | "nextFatherMutation" | "nextFatherFIR"
   | "nextHusbandSuccession" | "nextHusbandShare"
   | "nextDeniedNotice" | "nextDeniedSection6"
-  | "nextAgriPatta" | "nextAgriRevenue";
+  | "nextAgriPatta" | "nextAgriRevenue"
+  | "heroCtaUpload"
+  | "docUpTitle" | "docUpSub" | "docUpChoose" | "docUpMax"
+  | "docUpReading" | "docUpThinking" | "docUpExplanation"
+  | "docUpListen" | "docUpAnother"
+  | "docUpTooBig" | "docUpUnsupported" | "docUpNoText" | "docUpExtractFail";
 
 
 export const UI: Record<LangCode, Partial<Record<StringKey, string>>> = {
@@ -67,6 +72,20 @@ export const UI: Record<LangCode, Partial<Record<StringKey, string>>> = {
     heroCtaPrimary: "Start talking",
     heroCtaSecondary: "Find legal help",
     heroCtaGuidance: "Simple legal guidance",
+    heroCtaUpload: "Understand a document",
+    docUpTitle: "Understand a document",
+    docUpSub: "Upload a PDF or photo of any letter, notice or paper. We'll explain it in simple words.",
+    docUpChoose: "Choose a file",
+    docUpMax: "max 10 MB",
+    docUpReading: "Reading the document…",
+    docUpThinking: "NyayaSakhi is thinking…",
+    docUpExplanation: "Simple explanation",
+    docUpListen: "Listen again",
+    docUpAnother: "Upload another",
+    docUpTooBig: "File is too large (max 10 MB).",
+    docUpUnsupported: "Please upload a PDF or image.",
+    docUpNoText: "Could not read any text from this file. Try a clearer photo.",
+    docUpExtractFail: "Could not read this document. Please try again.",
     chooseLanguage: "Choose your language",
     chatPlaceholder: "Type or tap the mic to speak…",
     send: "Send", tapToSpeak: "Tap to speak", listening: "Listening…", speaking: "Speaking…",
@@ -147,6 +166,20 @@ export const UI: Record<LangCode, Partial<Record<StringKey, string>>> = {
     heroCtaPrimary: "बात शुरू करें",
     heroCtaSecondary: "कानूनी मदद खोजें",
     heroCtaGuidance: "सरल कानूनी मार्गदर्शन",
+    heroCtaUpload: "दस्तावेज़ समझें",
+    docUpTitle: "दस्तावेज़ समझें",
+    docUpSub: "कोई भी चिट्ठी, नोटिस या कागज़ का PDF या फोटो भेजें। हम सरल भाषा में समझाएँगे।",
+    docUpChoose: "फ़ाइल चुनें",
+    docUpMax: "अधिकतम 10 MB",
+    docUpReading: "दस्तावेज़ पढ़ रही हूँ…",
+    docUpThinking: "न्यायसखी सोच रही है…",
+    docUpExplanation: "सरल समझ",
+    docUpListen: "फिर से सुनें",
+    docUpAnother: "दूसरा अपलोड करें",
+    docUpTooBig: "फ़ाइल बहुत बड़ी है (अधिकतम 10 MB)।",
+    docUpUnsupported: "कृपया PDF या फोटो भेजें।",
+    docUpNoText: "इस फ़ाइल से कोई शब्द नहीं पढ़ पाई। साफ़ फोटो भेजें।",
+    docUpExtractFail: "दस्तावेज़ नहीं पढ़ पाई। फिर से कोशिश करें।",
     chooseLanguage: "अपनी भाषा चुनें",
     chatPlaceholder: "लिखें या माइक दबाकर बोलें…",
     send: "भेजें", tapToSpeak: "बोलने के लिए दबाएँ", listening: "सुन रही हूँ…", speaking: "बोल रही हूँ…",
