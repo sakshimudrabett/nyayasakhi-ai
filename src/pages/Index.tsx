@@ -81,6 +81,15 @@ const Index = () => {
                   <Button
                     size="lg"
                     variant="outline"
+                    onClick={() => setView("upload")}
+                    className="rounded-full h-14 px-7 text-base gap-2 bg-card border-2 hover:bg-accent/20"
+                  >
+                    <Upload className="h-5 w-5 text-primary" />
+                    {t(lang, "heroCtaUpload")}
+                  </Button>
+                  <Button
+                    size="lg"
+                    variant="outline"
                     onClick={() => setView("help")}
                     className="rounded-full h-14 px-7 text-base gap-2 bg-card border-2 hover:bg-accent/20"
                   >
