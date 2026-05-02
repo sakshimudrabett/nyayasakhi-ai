@@ -8,6 +8,7 @@ import { LegalGuidance } from "@/components/LegalGuidance";
 import { useLanguage } from "@/hooks/useLanguage";
 import { t } from "@/lib/languages";
 import heroImg from "@/assets/hero-woman.jpg";
+import logoImg from "@/assets/logo.svg";
 
 type View = "home" | "chat" | "help" | "guidance";
 
@@ -21,12 +22,13 @@ const Index = () => {
       <header className="sticky top-0 z-30 backdrop-blur-md bg-background/70 border-b">
         <div className="container mx-auto flex items-center justify-between py-3 px-4">
           <button onClick={() => setView("home")} className="flex items-center gap-2.5 group">
-            <div className="h-9 w-9 rounded-xl warm-bg grid place-items-center shadow-warm group-hover:scale-105 transition-transform">
-              <Sparkles className="h-4 w-4 text-primary-foreground" />
-            </div>
-            <div className="text-left leading-tight">
-              <div className="font-bold display text-lg">NyayaSakhi <span className="text-primary">AI</span></div>
-              <div className="text-[11px] text-muted-foreground hidden sm:block">{language.native}</div>
+            <img
+              src={logoImg}
+              alt="NyayaSakhi AI logo"
+              className="h-10 sm:h-12 w-auto group-hover:scale-105 transition-transform"
+            />
+            <div className="text-left leading-tight hidden sm:block">
+              <div className="text-[11px] text-muted-foreground">{language.native}</div>
             </div>
           </button>
           <div className="flex items-center gap-2">
