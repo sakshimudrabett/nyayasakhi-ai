@@ -211,6 +211,17 @@ const Index = () => {
           <LegalGuidance lang={lang} onAskChat={() => setView("chat")} onFindHelp={() => setView("help")} />
         </main>
       )}
+
+      {/* UPLOAD */}
+      {view === "upload" && (
+        <main className="container mx-auto px-4 py-6 max-w-3xl pb-20">
+          <div className="mb-6 animate-float-up">
+            <h1 className="display text-3xl font-bold">{t(lang, "docUpTitle")}</h1>
+            <p className="text-muted-foreground">{t(lang, "docUpSub")}</p>
+          </div>
+          <DocumentUpload lang={lang} />
+        </main>
+      )}
     </div>
   );
 };
