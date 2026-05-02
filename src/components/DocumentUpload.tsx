@@ -95,7 +95,7 @@ export const DocumentUpload = ({ lang }: Props) => {
     setStage("asking");
     setExplanation("");
     try {
-      const userMsg = `I am sharing a document. Please explain it to me in very simple ${language.name}, in 4-6 short sentences. Tell me: (1) what kind of document this is, (2) the most important points, (3) what I should do next. Avoid legal jargon.\n\nDOCUMENT TEXT:\n"""${text}"""`;
+      const userMsg = `IMPORTANT: You MUST reply ONLY in ${language.name} (${language.bcp47}), using the native script of ${language.name}. Do NOT use English or any other language.\n\nI am sharing a document. Please explain it to me in very simple ${language.name}, in 4-6 short sentences. Tell me: (1) what kind of document this is, (2) the most important points, (3) what I should do next. Avoid legal jargon. Remember: entire reply must be in ${language.name} only.\n\nDOCUMENT TEXT:\n"""${text}"""`;
 
       const resp = await fetch(CHAT_URL, {
         method: "POST",
@@ -142,6 +142,7 @@ export const DocumentUpload = ({ lang }: Props) => {
       }
       setStage("done");
       if (voiceOn && acc) speak(acc, language.bcp47);
+      else stopSpeaking();
     } catch (e) {
       console.error(e);
       toast.error("Connection problem.");
@@ -161,6 +162,24 @@ export const DocumentUpload = ({ lang }: Props) => {
             {t(lang, "docUpSub") || "Upload a PDF or photo. We'll explain it in simple words."}
           </p>
         </div>
+        <button
+          type="button"
+          onClick={() => {
+            const next = !voiceOn;
+            setVoiceOn(next);
+            if (!next) stopSpeaking();
+            else if (explanation) speak(explanation, language.bcp47);
+          }}
+          className={`shrink-0 inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-xs font-medium transition-colors ${
+            voiceOn ? "bg-primary/10 border-primary/30 text-primary" : "bg-muted text-muted-foreground"
+          }`}
+          aria-pressed={voiceOn}
+          aria-label={voiceOn ? "Turn voice off" : "Turn voice on"}
+          title={voiceOn ? (t(lang, "docUpVoiceOn" as any) || "Voice: On") : (t(lang, "docUpVoiceOff" as any) || "Voice: Off")}
+        >
+          {voiceOn ? "🔊" : "🔇"}
+          <span>{voiceOn ? (t(lang, "docUpVoiceOn" as any) || "Voice On") : (t(lang, "docUpVoiceOff" as any) || "Voice Off")}</span>
+        </button>
       </div>
 
       <input
