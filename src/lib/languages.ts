@@ -57,7 +57,12 @@ type StringKey =
   | "nextFatherDLSA" | "nextFatherMutation" | "nextFatherFIR"
   | "nextHusbandSuccession" | "nextHusbandShare"
   | "nextDeniedNotice" | "nextDeniedSection6"
-  | "nextAgriPatta" | "nextAgriRevenue";
+  | "nextAgriPatta" | "nextAgriRevenue"
+  | "heroCtaUpload"
+  | "docUpTitle" | "docUpSub" | "docUpChoose" | "docUpMax"
+  | "docUpReading" | "docUpThinking" | "docUpExplanation"
+  | "docUpListen" | "docUpAnother"
+  | "docUpTooBig" | "docUpUnsupported" | "docUpNoText" | "docUpExtractFail";
 
 
 export const UI: Record<LangCode, Partial<Record<StringKey, string>>> = {
