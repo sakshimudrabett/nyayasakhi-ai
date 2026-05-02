@@ -175,10 +175,10 @@ export const DocumentUpload = ({ lang }: Props) => {
           }`}
           aria-pressed={voiceOn}
           aria-label={voiceOn ? "Turn voice off" : "Turn voice on"}
-          title={voiceOn ? (t(lang, "docUpVoiceOn") || "Voice: On") : (t(lang, "docUpVoiceOff") || "Voice: Off")}
+          title={voiceOn ? (t(lang, "docUpVoiceOn" as any) || "Voice: On") : (t(lang, "docUpVoiceOff" as any) || "Voice: Off")}
         >
           {voiceOn ? "🔊" : "🔇"}
-          <span>{voiceOn ? (t(lang, "docUpVoiceOn") || "Voice On") : (t(lang, "docUpVoiceOff") || "Voice Off")}</span>
+          <span>{voiceOn ? (t(lang, "docUpVoiceOn" as any) || "Voice On") : (t(lang, "docUpVoiceOff" as any) || "Voice Off")}</span>
         </button>
       </div>
 
