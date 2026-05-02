@@ -2,7 +2,7 @@
 
 ### Multilingual AI Legal Assistant for Rural Women in India
 
-NyayaSakhi AI is a **Generative AI-powered legal guidance platform** designed to provide **simple, accessible, and multilingual legal support** to rural women in India, especially around **inheritance and property rights**.
+NyayaSakhi AI is a **Generative AI-powered legal assistant** that provides **simple, multilingual legal guidance** to rural women in India, focusing on **inheritance and property rights**.
 
 ---
 
@@ -12,28 +12,54 @@ NyayaSakhi AI is a **Generative AI-powered legal guidance platform** designed to
   Supports multiple Indian languages (Hindi, Tamil, Telugu, Marathi, etc.)
 
 * 🤖 **AI-Powered Chatbot**
-  Uses a Large Language Model (Gemini 2.5 Flash) to generate legal guidance
+  Uses Gemini 2.5 Flash (via API) to generate legal guidance
 
-* 🧠 **Prompt-Engineered Responses**
+* 🧠 **Prompt Engineering**
   Ensures:
 
-  * Simple language
+  * Simple explanations
   * Cultural sensitivity
   * Legal relevance
 
 * ⚡ **Real-Time Streaming Responses**
-  Chat responses are streamed live for better UX
+  Chat responses are streamed live
 
-* 🔒 **Secure Backend with Supabase**
-  Uses Supabase Edge Functions for scalable AI execution
+* 📄 **Document Upload & Explanation (NEW 🔥)**
 
-* 💬 **Domain-Specific Guidance**
-  Focused on:
+  * Upload legal documents (PDF/Text)
+  * AI extracts and explains them in simple language
+  * Helps users understand complex legal papers
 
-  * Hindu Succession Act (2005 Amendment)
-  * Muslim Personal Law
-  * Indian Succession Act
-  * Women’s legal rights
+* 🔒 **Serverless Backend**
+  Built using Supabase Edge Functions (Deno)
+
+---
+
+## 🧠 How It Works
+
+1. User enters a query OR uploads a document
+2. Request is sent to Supabase Edge Function
+3. System prompt guides AI behavior
+4. AI processes:
+
+   * Chat query OR
+   * Document text
+5. Response is streamed back to frontend
+
+---
+
+## 📄 Document Upload Feature
+
+### 💡 What it does
+
+* Upload a legal document (PDF or text)
+* Extracts content
+* Explains in **simple, user-friendly language**
+
+### 🧠 Example Use Case
+
+> A user uploads a property document →
+> AI explains ownership, rights, and important clauses in simple terms.
 
 ---
 
@@ -47,28 +73,13 @@ NyayaSakhi AI is a **Generative AI-powered legal guidance platform** designed to
 
 ### Backend
 
-* Supabase (Edge Functions)
-* Deno (Serverless functions)
+* Supabase Edge Functions (Deno)
 
 ### AI Layer
 
 * Gemini 2.5 Flash (via Lovable AI Gateway)
 * Prompt Engineering
-* Streaming API responses
-
----
-
-## 🧠 How It Works
-
-1. User enters a legal query
-2. Request is sent to Supabase Edge Function
-3. A **system prompt** guides the AI behavior:
-
-   * Language selection
-   * Legal constraints
-   * Tone and safety rules
-4. LLM generates response
-5. Response is streamed back to frontend
+* Streaming responses
 
 ---
 
@@ -78,17 +89,17 @@ NyayaSakhi AI is a **Generative AI-powered legal guidance platform** designed to
 nyayasakhi-ai/
 │
 ├── src/
-│   ├── components/       # UI Components
-│   ├── pages/            # Application pages
-│   ├── hooks/            # Custom React hooks
-│   ├── integrations/     # API + Supabase integrations
-│   ├── lib/              # Utility functions
+│   ├── components/
+│   ├── pages/
+│   ├── hooks/
+│   ├── integrations/
+│   ├── lib/
 │
 ├── supabase/
-│   ├── functions/nyaya-chat/   # AI backend (Edge Function)
+│   ├── functions/nyaya-chat/
 │
-├── public/               # Static assets
-├── .env                  # Environment variables
+├── public/
+├── .env
 ```
 
 ---
@@ -110,14 +121,14 @@ npm install
 
 ### 3. Configure Environment Variables
 
-Create a `.env` file:
+Create `.env`:
 
 ```env
 VITE_SUPABASE_URL=your_supabase_url
 VITE_SUPABASE_PUBLISHABLE_KEY=your_key
 ```
 
-Also configure in Supabase:
+In Supabase:
 
 ```
 LOVABLE_API_KEY=your_api_key
@@ -139,49 +150,22 @@ http://localhost:5173
 
 ---
 
-## 🔐 Environment Variables
-
-| Variable                      | Description            |
-| ----------------------------- | ---------------------- |
-| VITE_SUPABASE_URL             | Supabase project URL   |
-| VITE_SUPABASE_PUBLISHABLE_KEY | Supabase public key    |
-| LOVABLE_API_KEY               | API key for AI Gateway |
-
----
-
-## ⚠️ Limitations
-
-* No persistent chat memory (yet)
-* No vector database (RAG not implemented)
-* Relies on API-based LLM (no custom-trained model)
-
----
-
 ## 🔮 Future Improvements
 
-* 🧠 Add RAG (Retrieval-Augmented Generation)
-* 💾 Store chat history in database
-* 📊 Add analytics for usage insights
-* 🔍 Integrate legal document retrieval
-* 📱 Mobile-first UI improvements
+* 🧠 Chat memory (persistent conversations)
+* 📚 RAG (document-based knowledge retrieval)
+* 🎤 Voice input/output
+* 📍 Location-based legal help
+* 📊 Admin analytics dashboard
 
 ---
 
-## 🤝 Contribution
+## ⚠️ Disclaimer
 
-Contributions are welcome!
-Feel free to fork and submit pull requests.
-
----
-
-## 📜 Disclaimer
-
-This application provides **general legal guidance** and is **not a substitute for professional legal advice**. Users are encouraged to consult certified legal professionals or legal aid services.
+This application provides **general legal guidance only** and is **not a substitute for professional legal advice**.
 
 ---
 
 ## ❤️ Acknowledgment
 
-Built to empower women with accessible legal knowledge and bridge the justice gap using AI.
-
----
+Built to empower women with accessible legal knowledge using AI.
