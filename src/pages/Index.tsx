@@ -1,16 +1,17 @@
 import { useState } from "react";
-import { Mic, MapPin, ScrollText, ShieldCheck, ArrowRight, Phone, Sparkles, FileText } from "lucide-react";
+import { Mic, MapPin, ScrollText, ShieldCheck, ArrowRight, Phone, Sparkles, FileText, Upload } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { LanguagePicker } from "@/components/LanguagePicker";
 import { VoiceChat } from "@/components/VoiceChat";
 import { HelpDirectory } from "@/components/HelpDirectory";
 import { LegalGuidance } from "@/components/LegalGuidance";
+import { DocumentUpload } from "@/components/DocumentUpload";
 import { useLanguage } from "@/hooks/useLanguage";
 import { t } from "@/lib/languages";
 import heroImg from "@/assets/hero-woman.jpg";
 import logoImg from "@/assets/logo.svg";
 
-type View = "home" | "chat" | "help" | "guidance";
+type View = "home" | "chat" | "help" | "guidance" | "upload";
 
 const Index = () => {
   const { lang, setLang, language } = useLanguage();
