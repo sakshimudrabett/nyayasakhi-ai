@@ -109,7 +109,7 @@ nyayasakhi-ai/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/nyayasakhi-ai.git
+git clone https://github.com/sakshimudrabett/nyayasakhi-ai.git
 cd nyayasakhi-ai
 ```
 
@@ -121,11 +121,16 @@ npm install
 
 ### 3. Configure Environment Variables
 
-Create `.env`:
+Copy the example file and fill in your Supabase values:
+
+```bash
+cp .env.example .env
+```
 
 ```env
-VITE_SUPABASE_URL=your_supabase_url
-VITE_SUPABASE_PUBLISHABLE_KEY=your_key
+VITE_SUPABASE_PROJECT_ID=your_supabase_project_id
+VITE_SUPABASE_PUBLISHABLE_KEY=your_supabase_publishable_key
+VITE_SUPABASE_URL=https://your-project-id.supabase.co
 ```
 
 In Supabase:
@@ -157,6 +162,15 @@ http://localhost:5173
 * 🎤 Voice input/output
 * 📍 Location-based legal help
 * 📊 Admin analytics dashboard
+
+---
+
+## 👥 Team
+
+| Member | GitHub | Contributions |
+| ------ | ------ | ------------- |
+| Sakshi Mudrabett | [@sakshimudrabett](https://github.com/sakshimudrabett) | _TODO: add contributions_ |
+| Kushal Rajkumar | [@Kushalrajkumar](https://github.com/Kushalrajkumar) | _TODO: add contributions_ |
 
 ---
 
